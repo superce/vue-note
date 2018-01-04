@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue.js</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 如何不传递参数,则不要写括号会自动传入事件源,如果写括号了就要手动传入$event属性 -->
+    <div @click="fn">
+      点我
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var vm = new Vue({ //根实例
+    el: '#app',
+    methods:{
+      //methds和data中的数据会全部放到vm上,而且名字不能冲突,冲突会报错
+      //methds中的this都是指向实例
+      fn(){
+        console.log(this.a)
+      }
+    },
+    data: { //数据
+      a: 'hello vue.js'
+    }
+    })
+  </script>
+</body>
+</html>

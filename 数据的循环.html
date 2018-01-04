@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue.js</title>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="(name,index) in fruits">
+        {{ index+1 }} {{ name.name }}
+        <ul>
+          <li v-for="(color,childIndex) in name.color">{{ index+1 }}-{{childIndex+1}}{{ color }}</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+
+    var vm = new Vue({
+    el: '#app',
+    data: {
+      fruits: [
+        {name:'香蕉',color:['green','yellow']},
+        {name:'苹果',color:['green','red']},
+        {name:'香瓜',color:['green']},
+        {name:'橘子',color:['blue']}
+      ]
+    }
+    })
+  </script>
+</body>
+</html>

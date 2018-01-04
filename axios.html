@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue.js</title>
+</head>
+<body>
+  <div id="app">
+    <p>{{ msg }}</p>
+    <input type="text" v-model='msg'>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+
+    var vm = new Vue({
+    el: '#app',
+    created(){ //在数据被初始化以后被调用,this也是指向的vm实例.钩子函数
+      console.log(this.msg)
+    },
+    data: {
+      msg: 'hello vue.js'
+    }
+    })
+  </script>
+</body>
+</html>
