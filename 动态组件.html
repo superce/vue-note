@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue.js</title>
+</head>
+
+<body>
+  <div id="app">
+    <button v-for="tab in tabs" :key="tab" :class="['tab-button',{active: msg === tab}]" @click='msg = tab'>{{ tab }}</button>
+    <component :is='istab' class='tab'></component>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    Vue.component('tab-home', {
+      template: '<div> Home component </div>'
+    })
+    Vue.component('tab-post', {
+      template: '<div> Post component</div>'
+    })
+    Vue.component('tab-active', {
+      template: '<div> Actives component</div>'
+    })
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'home',
+        tabs: ['home', 'post', 'actives']
+      },
+      computed: {
+        istab() {
+          return this.msg.toLowerCase()
+        }
+      }
+    })
+  </script>
+  <style>
+    .tab-button {
+      padding: 6px 10px;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      background: #f0f0f0;
+      margin-bottom: 1px;
+      margin-right: 1px;
+    }
+
+    .tab-button:hover {
+      background: #e0e0e0;
+    }
+
+    .tab-button.active {
+      background: #e0e0e0;
+    }
+
+    .tab {
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+  </style>
+</body>
+
+</html>

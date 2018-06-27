@@ -9,18 +9,23 @@
 <body>
   <div id="app">
     <p>{{ arr }}</p>
-
+    <p>{{ re }}</p>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script>
     var vm = new Vue({
     el: '#app',
     data: {
-      arr: [1,2,3,4,5]
+      arr: '1,2,3,4,5'
+    },
+    computed:{
+      re:function(){
+        return this.arr.split('').reverse().join('')
+      }
     }
     })
     // vm.arr.reverse()
-     vm.arr = vm.arr.map(item => item*=9)
+    //  vm.arr = vm.arr.map(item => item*=9)
   </script>
 </body>
 </html>

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>vue.js</title>
 </head>
+
 <body>
   <div id="app">
     <ul>
@@ -16,21 +18,49 @@
         </ul>
       </li>
     </ul>
+    <div v-for='n in evenNum'> {{ n }} </div>
+    <button @click='greet'>弹窗</button>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script>
-
     var vm = new Vue({
-    el: '#app',
-    data: {
-      fruits: [
-        {name:'香蕉',color:['green','yellow']},
-        {name:'苹果',color:['green','red']},
-        {name:'香瓜',color:['green']},
-        {name:'橘子',color:['blue']}
-      ]
-    }
+      el: '#app',
+      data: {
+        fruits: [{
+            name: '香蕉',
+            color: ['green', 'yellow']
+          },
+          {
+            name: '苹果',
+            color: ['green', 'red']
+          },
+          {
+            name: '香瓜',
+            color: ['green']
+          },
+          {
+            name: '橘子',
+            color: ['blue']
+          }
+        ],
+        num: [0, 1, 2, 3, 4, 5],
+        tt: 'hello'
+      },
+      computed: {
+        evenNum() {
+          return this.num.filter((number) => number % 2 === 0)
+        }
+      },
+      methods: {
+        greet(event) {
+          if (event) {
+            alert(event.target.tagName)
+          }
+        }
+
+      }
     })
   </script>
 </body>
+
 </html>

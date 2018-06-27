@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue.js</title>
+
+</head>
+
+<body>
+  <div id="app">
+    <div>
+      <input type="radio" value="one" v-model.lazy="name">
+      <label for="one">one</label>
+      <input type="radio" value="two" v-model="name">
+      <label for="two">two</label>
+      <p>input输入:{{ name }}</p>
+    </div>
+    <div>
+      <input type="checkbox" value="one" v-model="name2">
+      <label for="one">one</label>
+      <input type="checkbox" value="two" v-model="name2">
+      <label for="two">two</label>
+      <p>input输入:{{ name2 }}</p>
+    </div>
+    <div>
+      <select name="" v-model="name3">
+        <option disabled value="">请选择</option>
+        <option value="a">one</option>
+        <option value="b">two</option>
+        <option value="c">three</option>
+      </select>
+      <p>select选择:{{ name3 }}</p>
+    </div>
+    <div>
+      <select v-model="name4">
+        <option disabled value="请选择">请选择</option>
+        <option v-for="(op) in option" :value='op.text'>
+          {{ op.val }}
+        </option>
+      </select>
+      <p>v-for:{{ name4 }}</p>
+    </div>
+    <div>
+      <button @click='num+=1'>点击了{{ num }}次</button>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var example2 = new Vue({
+      el: '#app',
+      data: {
+        name: '',
+        name2: [],
+        name3: '',
+        name4: '请选择',
+        option: [{
+            text: 'A',
+            val: 'one'
+          },
+          {
+            text: 'b',
+            val: 'two'
+          },
+          {
+            text: 'c',
+            val: 'three'
+          },
+          {
+            text: 'd',
+            val: 'four'
+          }
+        ],
+        num: 0
+      }
+    })
+  </script>
+</body>
+
+</html>

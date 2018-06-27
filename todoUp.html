@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link href="https://cdn.bootcss.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      width: 100%;
+    }
+
+    .header .top h1 {
+      background: #0288D1;
+      font-size: 20px;
+      line-height: 30px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .main {
+      width: 1000px;
+      margin: 0 auto;
+    }
+
+    .main .title h3 {
+      text-align: center;
+    }
+
+    .main .box {
+      margin-top: 10px;
+    }
+
+    .main .box ul {
+      list-style: none;
+    }
+
+    .main .box ul li {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="header">
+      <div class="top">
+        <h1>todoList</h1>
+      </div>
+    </div>
+    <div class="main">
+      <div class="title">
+        <h3>你有{{count}}件事要做</h3>
+      </div>
+      <input type="text" class="form-control" id="disabledInput" v-model="val" @keyup.enter="add">
+      <div class="box">
+        <ul>
+          <li v-for="(a,index) in arr">
+            <div>
+              <input type="checkbox" v-model="">
+              <span>{{ a }}</span>
+            </div>
+            <button class="btn btn-danger btn-xs" @click="rem(index)">×</button>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        val: '',
+        arr: []
+      },
+      methods: {
+        add() {
+          this.arr.push(this.val);
+          this.val = ''
+        },
+        rem(i) {
+          this.arr = this.arr.filter((item, index) => index != i)
+        }
+      },
+      computed: {
+        count() {
+          return this.arr.length
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

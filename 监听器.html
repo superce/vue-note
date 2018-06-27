@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue.js</title>
+</head>
+
+<body>
+  <div id="app">
+    <p>问个问题</p>
+    <input type="text" v-model="question">
+    <p v-html
+    ='answer'></p>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        question: '',
+        answer: '123'
+      },
+      watch: {
+        question(newQ, oldQ) {
+          this.answer = '456'
+          this.debouncedGetAnswer()
+        }
+      },
+      created() {
+        // `_.debounce` 是一个通过 Lodash 限制操作频率的函数。 
+        // 在这个例子中，我们希望限制访问 yesno.wtf/api 的频率 
+        // AJAX 请求直到用户输入完毕才会发出。想要了解更多关于
+        // `_.debounce` 函数 (及其近亲 `_.throttle`) 的知识， 
+        // 请参考：https://lodash.com/docs#debounce 
+        this.debouncedGetAnswer = _.debounce(this.getA, 500)
+      },
+      methods: {
+        getA() {
+          if (this.question.indexOf() == 1) {
+            this.answer = '321';
+            return
+          }
+          this.answer = 'thinking';
+          var that = this;
+          axios.get('https://yesno.wtf/api')
+            .then(res => that.answer = _.capitalize(response.data.answer))
+            .catch(error => that.answer = error)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
